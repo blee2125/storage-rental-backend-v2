@@ -13,9 +13,13 @@ const dataSchema = new mongoose.Schema({
         required: true,
         type: Number
     },
-    leaseLength: {
+    startDate: {
         required: true,
-        type: Number
+        type: String
+    },
+    endDate: {
+        required: true,
+        type: String
     }
 })
 
