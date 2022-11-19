@@ -4,6 +4,22 @@ const dataSchema = new mongoose.Schema({
     unitNumber: {
         required: true,
         type: String
+    },
+    type: {
+        required: false,
+        type: String
+    },
+    size: {
+        required: false,
+        type: String
+    },
+    location: {
+        required: false,
+        type: String
+    },
+    available: {
+        required: false,
+        type: Boolean
     }
 })
 
