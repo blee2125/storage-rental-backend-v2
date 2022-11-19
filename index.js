@@ -27,3 +27,6 @@ app.use('/api/storage-unit', StorageUnit)
 
 const Customer = require('./routes/Customer');
 app.use('/api/customer', Customer)
+
+const Lease = require('./routes/Lease');
+app.use('/api/lease', Lease)
