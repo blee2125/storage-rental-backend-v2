@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router()
 module.exports = router;
 const LeaseModel = require('../models/Lease');
+const StorageUnitModel = require('../models/StorageUnit');
 
 // Create Lease
 router.post('/post', async (req, res) => {
@@ -10,6 +11,14 @@ router.post('/post', async (req, res) => {
             ...req.body
         })
         const dataSaved = await newLease.save();
+
+        const id = dataSaved.unitId
+        const updatedData = {available: false}
+        const options = { new: true };
+        const updateUnit = await StorageUnitModel.findByIdAndUpdate(
+            id, updatedData, options
+        )
+
         res.status(200).json(dataSaved)
     }
     catch(error){
