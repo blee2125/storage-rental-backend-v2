@@ -13,6 +13,10 @@ const dataSchema = new mongoose.Schema({
         required: true,
         type: Number
     },
+    totalCost: {
+        required: true,
+        type: Number
+    },
     startDate: {
         required: true,
         type: String
