@@ -17,6 +17,10 @@ const dataSchema = new mongoose.Schema({
         required: false,
         type: String
     },
+    standardRate: {
+        required: false,
+        type: Number
+    },
     available: {
         required: false,
         type: Boolean
