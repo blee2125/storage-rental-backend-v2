@@ -17,6 +17,10 @@ const dataSchema = new mongoose.Schema({
         required: true,
         type: Number
     },
+    payments: {
+        required: false,
+        type: Number
+    },
     startDate: {
         required: true,
         type: String
