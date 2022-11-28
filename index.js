@@ -30,3 +30,6 @@ app.use('/api/customer', Customer)
 
 const Lease = require('./routes/Lease');
 app.use('/api/lease', Lease)
+
+const Payment = require('./routes/Payment');
+app.use('/api/payment', Payment)
