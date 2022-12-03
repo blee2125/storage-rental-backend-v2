@@ -37,6 +37,18 @@ router.get('/all', async (req, res) => {
     }
 })
 
+// Get Lease by id
+router.get('/get/:id', async (req, res) => {
+    try{
+        const id = req.params.id;
+        const LeaseData = await LeaseModel.findById(id);
+        res.json(LeaseData)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
+
 // Update Lease by ID
 router.put('/update/:id', async (req, res) => {
     try {
