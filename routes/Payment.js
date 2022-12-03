@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router()
 module.exports = router;
 const PaymentModel = require('../models/Payment');
+const LeaseModel = require('../models/Lease');
 
 // Create Payment
 router.post('/post', async (req, res) => {
@@ -10,6 +11,18 @@ router.post('/post', async (req, res) => {
             ...req.body
         })
         const dataSaved = await newPayment.save();
+
+        const leaseData = await LeaseModel.findById(req.body.leaseId)
+        if (leaseData.payments === undefined) {
+            const updateLeaseBalance = await LeaseModel.findByIdAndUpdate(
+                req.body.leaseId, {payments: req.body.payment}, { new: true }
+            )
+        } else {
+            const updateLeaseBalance = await LeaseModel.findByIdAndUpdate(
+                req.body.leaseId, {payments: (Number(leaseData.payments) + Number(req.body.payment))}
+            )
+        }
+        
         res.status(200).json(dataSaved)
     }
     catch(error){
@@ -28,7 +41,7 @@ router.get('/all', async (req, res) => {
     }
 })
 
-// Update Payment by ID
+// Update Payment by ID - not setup with lease
 router.put('/update/:id', async (req, res) => {
     try {
         const id = req.params.id;
@@ -45,7 +58,7 @@ router.put('/update/:id', async (req, res) => {
     }
 })
 
-// Delete Payment by ID
+// Delete Payment by ID - not setup with lease
 router.delete('/delete/:id', async (req, res) => {
     try {
         const id = req.params.id;
