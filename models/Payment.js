@@ -9,6 +9,10 @@ const dataSchema = new mongoose.Schema({
         required: true,
         type: String
     },
+    paymentType: {
+        required: true,
+        type: String
+    },
     payment: {
         required: true,
         type: Number
